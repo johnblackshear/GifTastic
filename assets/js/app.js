@@ -12,9 +12,9 @@ $(document).ready(function () {//I need jquery to run!
 		$('.button-container').append(button);
 	}
 
-	var createButtonsFromArray = function (arr) {
-		for (var i = 0; i < arr.length; i++) {
-			createButton(arr[i]);
+	var createButtonsFromArray = function () {
+		for (var i = 0; i < searchTerms.length; i++) {
+			createButton(searchTerms[i]);
 		}
 	}
 
@@ -43,6 +43,7 @@ $(document).ready(function () {//I need jquery to run!
 	}
 
 		$('#select-animal').on("click",function(event){
+			$(".button-container").empty();
 			event.preventDefault();
 			var animal = $('#animal-input').val().trim();
 			searchTerms.push(animal);
