@@ -1,10 +1,10 @@
 $(document).ready(function () {//I need jquery to run!
-	var searchTerms = ['fox', 'cow', 'chicken', 'pig', 'lizard','cat'];
+	var searchTerms = ['fox', 'cow', 'chicken', 'pig', 'lizard'];
 
 	var createButton = function (name) {
 		var button = $('<button>');
 		button.text(name);
-
+		
 		button.click(function () {
 			gifQuery($(this).text());
 		});
@@ -32,7 +32,7 @@ $(document).ready(function () {//I need jquery to run!
 			for(var i = 0; i < results.length; i++){
 			var animalDiv = $('<div>');
 			var animalImage = $('<img>');
-			animalImage.attr("src", results[i].images.fixed_height.url);
+			animalImage.attr("src", results[i].images.fixed_height_still.url);
 			var p = $("<p>").text("Rating: " + results[i].rating);
 			animalDiv.append(p);
 			animalDiv.append(animalImage);
@@ -42,7 +42,15 @@ $(document).ready(function () {//I need jquery to run!
 		});
 	}
 
-	//gifQuery("cat");
+		$('#select-animal').on("click",function(event){
+			event.preventDefault();
+			var animal = $('#animal-input').val().trim();
+			searchTerms.push(animal);
+			createButtonsFromArray();
+
+			
+		});
+	gifQuery("cat");
 
 	createButtonsFromArray(searchTerms);
 });
