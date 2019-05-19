@@ -23,3 +23,12 @@ h1{
 	padding:20px;
 	margin:20px auto;
 }
+
+body{
+	text-align: center;
+}
+
+#search-form{
+	float: right;
+}
+

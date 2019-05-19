@@ -1,5 +1,5 @@
 $(document).ready(function () {//I need jquery to run!
-	var searchTerms = ['fox', 'cow', 'chicken', 'pig', 'lizard'];
+	var searchTerms = ['cat','dog','fox', 'cow', 'chicken', 'pig', 'lizard'];
 
 	var createButton = function (name) {
 		var button = $('<button>');
@@ -33,6 +33,10 @@ $(document).ready(function () {//I need jquery to run!
 			var animalDiv = $('<div>');
 			var animalImage = $('<img>');
 			animalImage.attr("src", results[i].images.fixed_height_still.url);
+			animalImage.attr("data-still", results[i].images.fixed_height_still.url);
+            animalImage.attr("data-animate", results[i].images.fixed_height.url);
+            animalImage.attr("data-state", "still");
+            animalImage.attr("class", "gif");
 			var p = $("<p>").text("Rating: " + results[i].rating);
 			animalDiv.append(p);
 			animalDiv.append(animalImage);
@@ -48,10 +52,22 @@ $(document).ready(function () {//I need jquery to run!
 			var animal = $('#animal-input').val().trim();
 			searchTerms.push(animal);
 			createButtonsFromArray();
-
-			
 		});
-	gifQuery("cat");
+
+		$("body").on("click", ".gif", function () {
+			console.log("click");
+			var state = $(this).attr("data-state");
+			if (state === "still") {
+			  $(this).attr("src", $(this).attr("data-animate"));
+			  $(this).attr("data-state", "animate");
+			} else {
+			  $(this).attr("src", $(this).attr("data-still"));
+			  $(this).attr("data-state", "still");
+			}
+
+		});
+
+	gifQuery("frenchie");
 
 	createButtonsFromArray(searchTerms);
 });
