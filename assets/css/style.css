@@ -54,9 +54,16 @@ label{
 	font-size: 20px;
 	padding: 15px;
 	border-radius: 5px;
+	width: 200px;
 }
 
 #animal-input{
 	margin-bottom: 20px;
 	border-radius: 5px;
+	height: 32px;
+}
+
+#select-animal{
+background-color: #C4CAD0;
+font-size: 15px;
 }
