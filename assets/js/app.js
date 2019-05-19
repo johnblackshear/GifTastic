@@ -22,17 +22,27 @@ $(document).ready(function () {//I need jquery to run!
 		var apiKey = "vdJbozY65dSnXQCZUu0q59cvKTdKhVMF";
 		var queryURL = "http://api.giphy.com/v1/gifs/search?apiKey="
 			+ apiKey
-			+ "&q=" + term;
+			+ "&q=" + term + "&limit=10";
 
 		$.ajax({
-			method: "GET",
 			url: queryURL,
-		}).then(function (result) {
-			console.log(result);
+			method: "GET",
+		}).then(function (response) {
+			var results = response.data;
+			for(var i = 0; i < results.length; i++){
+			var animalDiv = $('<div>');
+			var animalImage = $('<img>');
+			animalImage.attr("src", results[i].images.fixed_height.url);
+			var p = $("<p>").text("Rating: " + results[i].rating);
+			animalDiv.append(p);
+			animalDiv.append(animalImage);
+			$('.library').prepend(animalDiv);
+			}
+			console.log(response);
 		});
 	}
 
-	gifQuery("cat");
+	//gifQuery("cat");
 
 	createButtonsFromArray(searchTerms);
 });
