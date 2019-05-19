@@ -2,7 +2,7 @@ $(document).ready(function () {//I need jquery to run!
 	var searchTerms = ['cat','dog','fox', 'cow', 'chicken', 'pig', 'lizard'];
 
 	var createButton = function (name) {
-		var button = $('<button>');
+		var button = $("<button class='btn btn-light'>");
 		button.text(name);
 		
 		button.click(function () {
@@ -38,6 +38,7 @@ $(document).ready(function () {//I need jquery to run!
             animalImage.attr("data-state", "still");
             animalImage.attr("class", "gif");
 			var p = $("<p>").text("Rating: " + results[i].rating);
+			//animalDiv.addclass(".animalDiv")
 			animalDiv.append(p);
 			animalDiv.append(animalImage);
 			$('.library').prepend(animalDiv);
