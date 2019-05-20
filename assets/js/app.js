@@ -30,18 +30,20 @@ $(document).ready(function () {//I need jquery to run!
 		}).then(function (response) {
 			var results = response.data;
 			for(var i = 0; i < results.length; i++){
-			var animalDiv = $('<div>');
-			var animalImage = $('<img>');
+			var animalDiv = $('<div id="gifs">');
+			var animalImage = $('<img id="gifs">');
 			animalImage.attr("src", results[i].images.fixed_height_still.url);
 			animalImage.attr("data-still", results[i].images.fixed_height_still.url);
             animalImage.attr("data-animate", results[i].images.fixed_height.url);
             animalImage.attr("data-state", "still");
             animalImage.attr("class", "gif");
 			var p = $("<p>").text("Rating: " + results[i].rating);
+			var t = $("<p>").text("" + results[i].title);
 			//animalDiv.addclass(".animalDiv")
+			animalDiv.append(t);
 			animalDiv.append(p);
 			animalDiv.append(animalImage);
-			$('.library').prepend(animalDiv);
+			$('#library').prepend(animalDiv);
 			}
 			console.log(response);
 		});
